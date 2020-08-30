@@ -13,14 +13,14 @@
               <i class="fas fa-user prefix grey-text"></i>
               {{ form.username(size=32, class_='form-control validate w-75 d-inline', id="username", type='text', placeholder='username') }}
               {% for error in form.username.errors %}
-              <span class="d-block" style="color: red;">[{{ error }}]</span>
+              <span class="d-block" style="color: red;">{{ error }}</span>
               {% endfor %}
             </div>
             <div class="md-form mb-1 text-center">
               <i class="fas fa-lock prefix grey-text"></i>
               {{ form.password(size=32, class_='form-control w-75 d-inline', id='password', type='password', placeholder='password') }}
               {% for error in form.password.errors %}
-              <span class="d-block" style="color: red;">[{{ error }}]</span>
+              <span class="d-block" style="color: red;">{{ error }}</span>
               {% endfor %}
             </div>
             <div class="md-form mb-3 text-center">

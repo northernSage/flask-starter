@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+<div class="row">
+    <div class="col text-center">
+        <h1 class="display-4">Error {{ e.code }}</h1>
+        {% if e.description %}<p>{{ e.description }}</p>{% endif %}
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <small>
+            Back to <a href="{{ url_for('homepage.index') }}">index</a>
+        </small>
+    </div>
+</div>
+{% endblock %}

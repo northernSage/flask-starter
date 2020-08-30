@@ -1,0 +1,46 @@
+version: '3.7'
+
+services:
+  redis_queue:
+    image: redis:5.0.8-buster
+    expose:
+      - 6379
+    restart: on-failure
+  worker:
+    build:
+      context: .
+      dockerfile: ./worker/Dockerfile
+    depends_on:
+      - redis_queue
+    command: rq worker --url redis://redis_queue:6379/0 task-queue
+    volumes:
+      - instance:/home/appuser/worker/instance
+    env_file:
+      - ./worker/env/worker.prod.env
+    restart: on-failure
+  web:
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile.prod
+    command: gunicorn --bind 0.0.0.0:5000 wsgi:app
+    volumes:
+      - static_volume:/home/appuser/app/static
+      - instance:/home/appuser/instance
+    expose:
+      - 5000
+    restart: on-failure
+    env_file:
+      - ./app/env/prod.env
+  nginx:
+    build: ./nginx
+    command: nginx -g 'daemon off;'
+    volumes:
+      - static_volume:/home/appuser/app/static
+    ports:
+      - 443:443
+      - 80:80
+    restart: on-failure
+
+volumes:
+  static_volume:
+  instance:

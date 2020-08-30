@@ -1,0 +1,49 @@
+<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Sign Up</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <form action="{{ url_for('auth.register') }}" method="post">
+                    {{ register_form.csrf_token }}
+                    <div class="md-form mb-3 text-center">
+                        <i class="fas fa-user prefix grey-text"></i>
+                        {{ register_form.username(size=32, class_='form-control validate w-75 d-inline', id='username', type='text', placeholder='username') }}
+                        {% for error in register_form.username.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                    <div class="md-form mb-3 text-center">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        {{ register_form.email(size=64, class_='form-control validate w-75 d-inline', id='email', type='email', placeholder='email') }}
+                        {% for error in register_form.email.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                    <div class="md-form mb-1 pb-0 text-center">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        {{ register_form.password(size=32, class='form-control w-75 d-inline', id='password', type='password', placeholder='password') }}
+                        {% for error in register_form.password.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                    <div class="md-form mb-3 text-center">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        {{ register_form.password2(size=32, class_='form-control w-75 d-inline', id='password2', type='password', placeholder='repeate password') }}
+                        {% for error in register_form.password2.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        {{ register_form.submit(class_='btn btn-default') }}
+                    </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

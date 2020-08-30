@@ -1,0 +1,61 @@
+###########
+# BUILDER #
+###########
+
+FROM python:3.7 as builder
+
+ENV BUILD_DIR=/usr/src/app
+
+# set work directory
+WORKDIR $BUILD_DIR
+
+# psycopg2 dependencies if using postgres
+# RUN apk update \
+#    && apk add postgresql-dev gcc python3-dev musl-dev jpeg-dev zlib-dev
+
+# upgrade pip and copy files
+RUN pip install --upgrade pip
+ADD ./app .
+
+# app dependencies
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir $BUILD_DIR/wheels -r requirements.txt
+
+#########
+# FINAL #
+#########
+
+FROM python:3.7
+
+ENV USER_HOME=/home/appuser
+ENV APP_HOME=/home/appuser/app
+
+# create a group and user
+RUN useradd --create-home appuser
+
+# create app and runtime dirs
+RUN mkdir $APP_HOME
+
+WORKDIR $USER_HOME
+
+# install dependencies
+COPY --from=builder /usr/src/app/wheels /wheels
+COPY --from=builder /usr/src/app/requirements.txt .
+RUN pip install --no-cache /wheels/*
+
+# copy all project files
+ADD ./app $APP_HOME
+COPY ./instance $USER_HOME/instance
+COPY ./migrations $USER_HOME/migrations
+COPY ./wsgi.py $USER_HOME
+
+# run permission to entrypoint script
+RUN chmod +x $APP_HOME/entrypoint.prod.sh
+
+# chown all the files to application user
+RUN chown -R appuser:appuser $USER_HOME
+
+# change to the app user
+USER appuser
+
+# call entrypoint
+CMD ["./app/entrypoint.prod.sh"]

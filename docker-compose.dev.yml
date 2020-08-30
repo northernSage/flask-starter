@@ -15,7 +15,7 @@ services:
     volumes:
       - ./instance:/home/appuser/worker/instance
     env_file:
-      - ./worker/env/worker.dev.env
+      - ./worker/envfiles/worker.dev.env
   web:
     build:
       context: .
@@ -26,4 +26,4 @@ services:
     ports:
       - 5000:5000
     env_file:
-      - ./app/env/dev.env
+      - ./app/envfiles/dev.env

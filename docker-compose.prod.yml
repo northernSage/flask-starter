@@ -16,7 +16,7 @@ services:
     volumes:
       - instance:/home/appuser/worker/instance
     env_file:
-      - ./worker/env/worker.prod.env
+      - ./worker/envfiles/worker.prod.env
     restart: on-failure
   web:
     build:
@@ -30,7 +30,7 @@ services:
       - 5000
     restart: on-failure
     env_file:
-      - ./app/env/prod.env
+      - ./app/envfiles/prod.env
   nginx:
     build: ./nginx
     command: nginx -g 'daemon off;'

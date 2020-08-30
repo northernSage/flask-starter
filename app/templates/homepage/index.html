@@ -2,36 +2,25 @@
 
 {% block app_content %}
 
-{% if not current_user.is_authenticated %}
-	<!-- include modal password recovery form structure -->
-	{% include 'auth/password_reset_request.html' %}
-	<!-- include modal login form structure -->
-	{% include 'auth/login.html' %}
-	<!-- include modal register form structure -->
-	{% include 'auth/register.html' %}
-{% endif %}
-
 <div class="row">
-	<!-- background video -->
-	{% include 'background-video.html' %}
-	<!-- section -->
-	<section class="py-5">
-		<div class="container py-5">
-			<div class="row">
-				<div class="col-lg-8 mx-auto">
-					<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis velit nec lectus
-						sagittis auctor. Vivamus sollicitudin lectus et odio auctor blandit. Ut at pretium nulla. Fusce
-						vel nulla ac tortor faucibus facilisis. Donec libero justo, bibendum id maximus ut, euismod id
-						ante. <code>Nullam felis justo</code>, vestibulum sed elit pharetra, tincidunt laoreet urna. Phasellus est
-						sapien, laoreet eu venenatis varius, dictum a urna. Aenean et leo lectus. In id mauris at velit
-						rhoncus porttitor vel vitae tellus. Donec mollis faucibus arcu sit amet facilisis. Ut quis nulla
-						placerat, vehicula dui ac, lobortis velit. Curabitur mattis ligula vel magna ornare, at euismod
-						tortor viverra. Proin in faucibus felis. <code>Mauris quis lacinia purus.</code>
-					</p>
-				</div>
-			</div>
-		</div>
-	</section>
+  <section class="py-5">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h1 class="display-4">Homepage</p>
+          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis velit nec lectus
+          sagittis auctor. Vivamus sollicitudin lectus et odio auctor blandit. Ut at pretium nulla. Fusce
+          vel nulla ac tortor faucibus facilisis. Donec libero justo, bibendum id maximus ut, euismod id
+          ante. <code>Nullam felis justo</code>, vestibulum sed elit pharetra, tincidunt laoreet urna. Phasellus est
+          sapien, laoreet eu venenatis varius, dictum a urna. Aenean et leo lectus. In id mauris at velit
+          rhoncus porttitor vel vitae tellus. Donec mollis faucibus arcu sit amet facilisis. Ut quis nulla
+          placerat, vehicula dui ac, lobortis velit. Curabitur mattis ligula vel magna ornare, at euismod
+          tortor viverra. Proin in faucibus felis. <code>Mauris quis lacinia purus.</code>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
 {% endblock %}

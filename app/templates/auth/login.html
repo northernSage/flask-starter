@@ -1,40 +1,42 @@
-<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Sign In</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+{% extends 'base.html' %}
+
+{% block app_content %}
+
+<div class="row">
+  <section class="py-5 w-100">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <form action="{{ url_for('auth.login') }}" method="POST" novalidate>
+            {{ form.csrf_token }}
+            <div class="md-form mb-3 text-center">
+              <i class="fas fa-user prefix grey-text"></i>
+              {{ form.username(size=32, class_='form-control validate w-75 d-inline', id="username", type='text', placeholder='username') }}
+              {% for error in form.username.errors %}
+              <span class="d-block" style="color: red;">[{{ error }}]</span>
+              {% endfor %}
             </div>
-            <div class="modal-body mx-3"></div>
-            <form action="{{ url_for('auth.login') }}" method="POST" novalidate>
-                {{ login_form.csrf_token }}
-                <div class="md-form mb-3 text-center">
-                    <i class="fas fa-user prefix grey-text"></i>
-                    {{ login_form.username(size=32, class_='form-control validate w-75 d-inline', id="username", type='text', placeholder='username') }}
-                    {% for error in login_form.username.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-                </div>
-                <div class="md-form mb-1 text-center">
-                    <i class="fas fa-lock prefix grey-text"></i>
-                    {{ login_form.password(size=32, class_='form-control w-75 d-inline', id='password', type='password', placeholder='password') }}
-                    {% for error in login_form.password.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-                </div>
-                <div class="md-form mb-3 text-center">
-                    <span class="form-text text-muted">
-                        {{ login_form.remember_me.label(for="remember", class_='')}}
-                        {{ login_form.remember_me(class_='', id='remember', type='checkbox') }}
-                    </span>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                        {{ login_form.submit(class_="btn btn-default") }}
-                </div>
-            </form>
+            <div class="md-form mb-1 text-center">
+              <i class="fas fa-lock prefix grey-text"></i>
+              {{ form.password(size=32, class_='form-control w-75 d-inline', id='password', type='password', placeholder='password') }}
+              {% for error in form.password.errors %}
+              <span class="d-block" style="color: red;">[{{ error }}]</span>
+              {% endfor %}
+            </div>
+            <div class="md-form mb-3 text-center">
+              <span class="form-text text-muted">
+                {{ form.remember_me.label(for="remember", class_='')}}
+                {{ form.remember_me(class_='', id='remember', type='checkbox') }}
+              </span>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              {{ form.submit(class_="btn btn-default") }}
+            </div>
+          </form>
+
         </div>
+      </div>
     </div>
+  </section>
 </div>
+{% endblock %}

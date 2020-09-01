@@ -76,10 +76,20 @@ Pre-configuration for Let's encrypt SSL/TLS certificate (Grade A on SSL labs)
 
 	```git remote set-url origin <new-git-url>```
 
-	```git push -u origin master```
+    ```git push -u origin master```
 
 You are all set, get codding! :)
 
-**Development Environment information:**
+### Testing
+
+In order to run tests, first open a command shell in your application container
+
+    ```docker-compose -f docker-compose.dev/prod.yml exec web bash```
+
+and execute the test suite 
+
+    ```pytest```
+
+**Aditional information:**
 
 ```flask create-test-user``` creates user *appuser* of password: *appuser*

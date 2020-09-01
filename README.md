@@ -16,7 +16,7 @@
 - Database migrations (flask-migration)
 - Login, Logout, Register, password recovery (flask-login)
 - Error logging (email logs with flask-mail and rotating files)
-- Teste suite (pytest)
+- Test suite (pytest)
 
 Pre-configuration for Let's encrypt SSL/TLS certificate (Grade A on SSL labs)
 
@@ -38,7 +38,7 @@ Pre-configuration for Let's encrypt SSL/TLS certificate (Grade A on SSL labs)
 
     ```pip install -r requirements.txt```
 
-3. Tweak environment variables using the *.env* files inside each service root directory (*app* and *worker*)
+3. Set environment variables using the *.env* files inside *envfiles* directories in each service root (*app* and *worker*)
     
     **Important:** Do not forget to create and set a new ```SECRET_KEY``` value and set FLASK_ENV to "production" when deploying!
 
@@ -54,7 +54,7 @@ Pre-configuration for Let's encrypt SSL/TLS certificate (Grade A on SSL labs)
 
 5. Open a command shell in your *web* container and initialize the database
 
-    ```docker-compose -f .\docker-compose.dev.yml exec web bash```
+    ```docker-compose -f .\docker-compose.dev/prod.yml exec web bash```
 
     and run
 
@@ -68,7 +68,7 @@ Pre-configuration for Let's encrypt SSL/TLS certificate (Grade A on SSL labs)
 
     ```flask db migrate -m "first migration"```
 
-8. Apply migration to development database (sqlite)
+8. Apply migrations 
 
     ```flask db upgrade```
 

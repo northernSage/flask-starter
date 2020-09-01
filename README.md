@@ -38,7 +38,7 @@ Pre-configuration for Let's encrypt SSL/TLS certificate (Grade A on SSL labs)
 
     ```docker-compose -f docker-compose.dev.yml up --build```
 
-**Obs.** You can access the application by visiting the URI ```https://<host-machine-ip>``` at first, and later customize Nginx to your desired url format, hostname, port, etc.
+**Obs.** You can access the application by visiting the URI ```https://<host-machine-ip>``` at first (```https://<host-machine-ip>:5000``` for development mode), and later customize Nginx to your desired url format, hostname, port, etc.
 
 5. Open a command shell in your *web* container and initialize the database
 

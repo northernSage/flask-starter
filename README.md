@@ -40,13 +40,11 @@ Pre-configuration for Let's encrypt SSL/TLS certificate (Grade A on SSL labs)
 
 **Obs.** You can access the application by visiting the URI ```https://<host-machine-ip>``` at first (```https://<host-machine-ip>:5000``` for development mode), and later customize Nginx to your desired url format, hostname, port, etc.
 
-5. Open a command shell in your *web* container and initialize the database
+5. Open a command shell in your *web* container and apply migrations
 
     ```docker-compose -f .\docker-compose.dev/prod.yml exec web bash```
 
-    and run
-
-    ```flask init-db```
+    ```flask db upgrade```
 
 6. Create a test user
 
@@ -56,11 +54,8 @@ Pre-configuration for Let's encrypt SSL/TLS certificate (Grade A on SSL labs)
 
     ```flask db migrate -m "first migration"```
 
-8. Apply migrations 
 
-    ```flask db upgrade```
-
-9. Set your application repository as new remote so you can push changes to it 
+8. Set your application repository as new remote so you can push changes to it 
 
     ```git remote set-url origin <your-app-repo-url>```
 

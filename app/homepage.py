@@ -5,6 +5,7 @@ from app import db
 bp = Blueprint('homepage', __name__)
 
 @bp.route('/')
+@login_required
 def index():
     return render_template( 'homepage/index.html')
 

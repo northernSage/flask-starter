@@ -44,6 +44,7 @@ RUN pip install --no-cache /wheels/*
 
 # copy all project files
 ADD ./app $APP_HOME
+ADD ./tests $USER_HOME/tests
 COPY ./instance $USER_HOME/instance
 COPY ./migrations $USER_HOME/migrations
 COPY ./wsgi.py $USER_HOME

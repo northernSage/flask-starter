@@ -24,7 +24,7 @@ Pre-configuration for Let's encrypt SSL/TLS certificate (Grade A on SSL labs)
 
 1. Clone this repository
 
-    ```git clone https://github.com/northernSage/flask-starter-app.git```
+    ```git clone https://github.com/northernSage/flask-starter.git```
 
 2. Create a virtual environment and activate it
 

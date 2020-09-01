@@ -50,12 +50,7 @@ Pre-configuration for Let's encrypt SSL/TLS certificate (Grade A on SSL labs)
 
     ```flask create-test-user```
 
-7. Create initial migration files
-
-    ```flask db migrate -m "first migration"```
-
-
-8. Set your application repository as new remote so you can push changes to it 
+7. Set your application repository as new remote so you can push changes to it 
 
     ```git remote set-url origin <your-app-repo-url>```
 

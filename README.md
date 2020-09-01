@@ -72,9 +72,9 @@ Pre-configuration for Let's encrypt SSL/TLS certificate (Grade A on SSL labs)
 
     ```flask db upgrade```
 
-9. Change git remote to point to your desired github repository
+9. Set your application repository as new remote so you can push changes to it 
 
-	```git remote set-url origin <new-git-url>```
+	```git remote set-url origin <your-app-repo-url>```
 
     ```git push -u origin master```
 

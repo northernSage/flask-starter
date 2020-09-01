@@ -47,6 +47,7 @@ ADD ./app $APP_HOME
 COPY ./instance $USER_HOME/instance
 COPY ./migrations $USER_HOME/migrations
 COPY ./wsgi.py $USER_HOME
+COPY ./setup.cfg $USER_HOME
 
 # run permission to entrypoint script
 RUN chmod +x $APP_HOME/entrypoint.prod.sh

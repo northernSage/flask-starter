@@ -1,0 +1,7 @@
+# normalize crlf to lf
+* text=auto
+
+*.png binary
+*.jpg binary
+tests/**/*.http binary
+tests/res/test.txt binary

@@ -74,13 +74,13 @@ def create_app(test_config=None):
     app.task_queue = Queue('task-queue', connection=app.redis)
 
     #  registering blueprints
-    from . import auth
+    from .blueprints import auth
     app.register_blueprint(auth.bp)
-    from . import homepage
+    from .blueprints import homepage
     app.register_blueprint(homepage.bp)
-    from . import error
+    from .blueprints import error
     app.register_blueprint(error.bp)
-    from . import email
+    from .blueprints import email
     app.register_blueprint(email.bp)
 
     return app

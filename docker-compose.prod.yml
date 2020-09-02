@@ -21,7 +21,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: ./web/docker/Dockerfile.prod
+      dockerfile: ./app/docker/Dockerfile.prod
     command: gunicorn --bind 0.0.0.0:5000 wsgi:app
     volumes:
       - static_volume:/home/appuser/app/static
@@ -30,7 +30,7 @@ services:
       - 5000
     restart: on-failure
     env_file:
-      - ./web/envfiles/prod.env
+      - ./app/envfiles/prod.env
   nginx:
     build: ./nginx
     command: nginx -g 'daemon off;'

@@ -9,7 +9,7 @@ RUN useradd --create-home appuser && mkdir $APP_HOME
 WORKDIR $APP_HOME
 
 # extra packages from extra-packages.sh
-COPY ./app/extra-packages.sh $APP_HOME/
+COPY ./app/docker/extra-packages.sh $APP_HOME/
 RUN chmod +x extra-packages.sh && ./extra-packages.sh
 
 # upgrade pip and install requirements
@@ -19,12 +19,12 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 # copy all app files
 ADD app $APP_HOME
-COPY wsgi.py $USER_HOME
+COPY ./app/wsgi.py $USER_HOME
 
 RUN chown -R appuser:appuser $APP_HOME
 
 # give run permission
-RUN chmod +x ./entrypoint.dev.sh
+RUN chmod +x ./docker/entrypoint.dev.sh
 
 # switch to non-root user
 RUN usermod -aG adm appuser
@@ -33,4 +33,4 @@ USER appuser
 WORKDIR $USER_HOME
 
 # call cmd script
-CMD ["./entrypoint.dev.sh"]
+CMD ["./docker/entrypoint.dev.sh"]

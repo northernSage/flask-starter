@@ -44,14 +44,14 @@ RUN pip install --no-cache /wheels/*
 
 # copy all project files
 ADD ./app $APP_HOME
-ADD ./tests $USER_HOME/tests
-COPY ./instance $USER_HOME/instance
-COPY ./migrations $USER_HOME/migrations
-COPY ./wsgi.py $USER_HOME
-COPY ./setup.cfg $USER_HOME
+ADD ./app/tests $USER_HOME/tests
+COPY ./app/instance $USER_HOME/instance
+COPY ./app/migrations $USER_HOME/migrations
+COPY ./app/wsgi.py $USER_HOME
+COPY ./app/setup.cfg $USER_HOME
 
 # run permission to entrypoint script
-RUN chmod +x $APP_HOME/entrypoint.prod.sh
+RUN chmod +x $APP_HOME/docker/entrypoint.prod.sh
 
 # chown all the files to application user
 RUN chown -R appuser:appuser $USER_HOME
@@ -60,4 +60,4 @@ RUN chown -R appuser:appuser $USER_HOME
 USER appuser
 
 # call entrypoint
-CMD ["./app/entrypoint.prod.sh"]
+CMD ["./app/docker/entrypoint.prod.sh"]

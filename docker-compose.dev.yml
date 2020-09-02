@@ -13,13 +13,13 @@ services:
       - redis_queue
     command: rq worker --url redis://redis_queue:6379/0 task-queue
     volumes:
-      - ./web/instance:/home/appuser/worker/instance
+      - ./app/instance:/home/appuser/worker/instance
     env_file:
       - ./worker/envfiles/worker.dev.env
   web:
     build:
       context: .
-      dockerfile: ./web/docker/Dockerfile.dev
+      dockerfile: ./app/docker/Dockerfile.dev
     command: flask run --host 0.0.0.0
     #  bind mounting root to docker user home folder
     #  makes it easier to test during development
@@ -28,4 +28,4 @@ services:
     ports:
       - 5000:5000
     env_file:
-      - ./web/envfiles/dev.env
+      - ./app/envfiles/dev.env

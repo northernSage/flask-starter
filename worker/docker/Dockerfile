@@ -18,7 +18,7 @@ COPY ./app/models.py $APP_HOME
 ADD ./worker/app $APP_HOME
 
 # extra packages from extra-packages.sh
-COPY ./worker/extra-packages.sh $WORKER_HOME
+COPY ./worker/docker/extra-packages.sh $WORKER_HOME
 RUN chmod +x $WORKER_HOME/extra-packages.sh && $WORKER_HOME/extra-packages.sh
 
 # upgrade pip, container and install requirements

@@ -16,6 +16,6 @@ setup(
         "redis",
         "rq",
         "pip-tools",
-        "pre-commit"
-    ]
+        "pre-commit",
+    ],
 )

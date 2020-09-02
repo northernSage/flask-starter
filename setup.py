@@ -17,5 +17,6 @@ setup(
         "rq",
         "pip-tools",
         "pre-commit",
+        "email_validator",
     ],
 )

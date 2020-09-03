@@ -62,11 +62,11 @@ You are all set, get codding! :)
 
 In order to run tests, first open a command shell in the application container
 
-    ```docker-compose -f docker-compose.dev/prod.yml exec web bash```
+   ```docker-compose -f docker-compose.dev/prod.yml exec web bash```
 
 and execute the test suite 
 
-    ```pytest```
+   ```pytest```
 
 **Aditional information:**
 

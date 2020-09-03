@@ -8,6 +8,7 @@ from app.forms import RegistrationForm
 from app.forms import ResetPasswordForm
 from app.forms import ResetPasswordRequestForm
 from app.models import User
+from flask import abort 
 from flask import Blueprint
 from flask import flash
 from flask import redirect
@@ -18,7 +19,6 @@ from flask_login import current_user
 from flask_login import login_required
 from flask_login import login_user
 from flask_login import logout_user
-from werkzeug.urls import url_parse
 
 bp = Blueprint("auth", __name__, url_prefix="/auth")
 

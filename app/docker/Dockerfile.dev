@@ -13,9 +13,9 @@ COPY ./app/docker/extra-packages.sh $APP_HOME/
 RUN chmod +x extra-packages.sh && ./extra-packages.sh
 
 # upgrade pip and install requirements
-COPY ./app/requirements.txt $APP_HOME/
+COPY ./app/requirements/app.txt $APP_HOME/
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+    pip install --no-cache-dir -r app.txt
 
 # copy all app files
 ADD app $APP_HOME

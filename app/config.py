@@ -30,3 +30,4 @@ class TestConfig(Config):
     MAIL_SERVER = ""
     WTF_CSRF_ENABLED = False  # csrf protection disabled for testing
     DEBUG = True
+    REDIS_URL =  r"redis://redis_queue:6379/0"

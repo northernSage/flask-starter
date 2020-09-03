@@ -18,7 +18,7 @@ RUN pip install --upgrade pip
 ADD ./app .
 
 # app dependencies
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir $BUILD_DIR/wheels -r requirements.txt
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir $BUILD_DIR/wheels -r requirements/app.txt
 
 #########
 # FINAL #
@@ -39,16 +39,16 @@ WORKDIR $USER_HOME
 
 # install dependencies
 COPY --from=builder /usr/src/app/wheels /wheels
-COPY --from=builder /usr/src/app/requirements.txt .
+COPY --from=builder /usr/src/app/requirements/app.txt .
 RUN pip install --no-cache /wheels/*
 
 # copy all project files
 ADD ./app $APP_HOME
-ADD ./app/tests $USER_HOME/tests
+ADD ./tests $USER_HOME/tests
 COPY ./app/instance $USER_HOME/instance
 COPY ./app/migrations $USER_HOME/migrations
 COPY ./app/wsgi.py $USER_HOME
-COPY ./app/setup.cfg $USER_HOME
+COPY ./setup.cfg $USER_HOME
 
 # run permission to entrypoint script
 RUN chmod +x $APP_HOME/docker/entrypoint.prod.sh

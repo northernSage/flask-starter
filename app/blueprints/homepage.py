@@ -7,32 +7,33 @@ from flask import url_for
 from flask_login import current_user
 from flask_login import login_required
 
-bp = Blueprint('homepage', __name__)
+bp = Blueprint("homepage", __name__)
 
-@bp.route('/')
+
+@bp.route("/")
 @login_required
 def index():
-    return render_template( 'homepage/index.html')
+    return render_template("homepage/index.html")
 
 
-@bp.route('/progress/<task_id>/')
+@bp.route("/progress/<task_id>/")
 @login_required
 def get_job_progress(task_id):
     task = current_user.get_task(task_id)
     return {
-        'id': task.id,
-        'description': task.description,
-        'progress': task.get_progress(),
-        'complete': task.complete}
+        "id": task.id,
+        "description": task.description,
+        "progress": task.get_progress(),
+        "complete": task.complete,
+    }
 
 
-@bp.route('/tasktest/<delay>/')
+@bp.route("/tasktest/<delay>/")
 @login_required
 def testtask(delay):
     task = current_user.launch_task(
-        'test_task', 
-        f'testing background jobs ({delay}s delay)...', 
-        delay)
-    flash(f'Test job {task.id} queued')
+        "test_task", f"testing background jobs ({delay}s delay)...", delay
+    )
+    flash(f"Test job {task.id} queued")
     db.session.commit()
-    return redirect(url_for('homepage.index'))
+    return redirect(url_for("homepage.index"))

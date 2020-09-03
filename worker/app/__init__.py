@@ -9,6 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 login = LoginManager()
 
+
 def create_app(test_config=None):
     """minimal app object for resource sharing
     amongst worker processes and main application

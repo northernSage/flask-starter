@@ -9,7 +9,7 @@ from werkzeug.exceptions import NotFound
 from werkzeug.exceptions import RequestTimeout
 from werkzeug.exceptions import ServiceUnavailable
 
-bp = Blueprint('error', __name__)
+bp = Blueprint("error", __name__)
 
 
 @bp.app_errorhandler(NotFound)
@@ -23,4 +23,4 @@ def handle_exception(e):
     """generic error page"""
     if e.code == 500:
         db.session.rollback()
-    return render_template('error/generic.html', e=e), e.code
+    return render_template("error/generic.html", e=e), e.code

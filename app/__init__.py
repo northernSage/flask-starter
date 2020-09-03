@@ -25,60 +25,66 @@ def create_app(test_config=None):
         app.config.from_object(Config)
     else:
         app.config.from_object(test_config)
-    # error handing 
+    # error handing
     if not app.debug:
         #  mail logger
-        if app.config['MAIL_SERVER']:
+        if app.config["MAIL_SERVER"]:
             auth = None
-            if app.config['MAIL_USERNAME'] or app.config['MAIL_PASSWORD']:
-                auth = (app.config['MAIL_USERNAME'],
-                        app.config['MAIL_PASSWORD'])
+            if app.config["MAIL_USERNAME"] or app.config["MAIL_PASSWORD"]:
+                auth = (app.config["MAIL_USERNAME"], app.config["MAIL_PASSWORD"])
             secure = None
-            if app.config['MAIL_USE_TLS']:
+            if app.config["MAIL_USE_TLS"]:
                 secure = ()
             mail_handler = SMTPHandler(
-                mailhost=(app.config['MAIL_SERVER'], app.config['MAIL_PORT']),
-                fromaddr='no-reply@' + app.config['MAIL_SERVER'],
-                toaddrs=app.config['ADMINS'], subject='Error Log',
-                credentials=auth, secure=secure)
+                mailhost=(app.config["MAIL_SERVER"], app.config["MAIL_PORT"]),
+                fromaddr="no-reply@" + app.config["MAIL_SERVER"],
+                toaddrs=app.config["ADMINS"],
+                subject="Error Log",
+                credentials=auth,
+                secure=secure,
+            )
             mail_handler.setLevel(logging.ERROR)
             app.logger.addHandler(mail_handler)
         # rotating file logger
-        log_path = Path('app/logs/error.log')
+        log_path = Path("app/logs/error.log")
         log_path.parent.mkdir(exist_ok=True)
-        file_handler = RotatingFileHandler(
-            log_path,
-            maxBytes=10240,
-            backupCount=10)
-        file_handler.setFormatter(logging.Formatter(
-            '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
+        file_handler = RotatingFileHandler(log_path, maxBytes=10240, backupCount=10)
+        file_handler.setFormatter(
+            logging.Formatter(
+                "%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]"
+            )
+        )
         file_handler.setLevel(logging.INFO)
         app.logger.addHandler(file_handler)
         app.logger.setLevel(logging.INFO)
-        app.logger.info('Starting up...')
+        app.logger.info("Starting up...")
 
-    #  creating instance folder 
+    #  creating instance folder
     Path(app.instance_path).mkdir(exist_ok=True)
 
-    # initializing extensions 
+    # initializing extensions
     db.init_app(app)
     migrate.init_app(app, db)
     login.init_app(app)
     mail.init_app(app)
-    login.login_view = 'auth.login'
+    login.login_view = "auth.login"
 
-    # setting up redis 
-    app.redis = Redis.from_url(app.config['REDIS_URL'])
-    app.task_queue = Queue('task-queue', connection=app.redis)
+    # setting up redis
+    app.redis = Redis.from_url(app.config["REDIS_URL"])
+    app.task_queue = Queue("task-queue", connection=app.redis)
 
     #  registering blueprints
     from .blueprints import auth
+
     app.register_blueprint(auth.bp)
     from .blueprints import homepage
+
     app.register_blueprint(homepage.bp)
     from .blueprints import error
+
     app.register_blueprint(error.bp)
     from .blueprints import email
+
     app.register_blueprint(email.bp)
 
     return app

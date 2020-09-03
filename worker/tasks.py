@@ -10,12 +10,11 @@ app = create_app()
 app.app_context().push()
 
 # custom logger
-logger = logging.getLogger('task_logger')
+logger = logging.getLogger("task_logger")
 logger.setLevel(logging.ERROR)
-fh = logging.FileHandler('log.txt')
+fh = logging.FileHandler("log.txt")
 fh.setLevel(logging.ERROR)
-formatter = logging.Formatter(
-    '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 fh.setFormatter(formatter)
 logger.addHandler(fh)
 
@@ -23,7 +22,7 @@ logger.addHandler(fh)
 def _set_task_progress(progress, job, job_id):
     """helper function for task progress update"""
     if job:
-        job.meta['progress'] = progress
+        job.meta["progress"] = progress
         job.save_meta()
         if int(progress) >= 100:
             task = Task.query.filter_by(id=job_id).first()

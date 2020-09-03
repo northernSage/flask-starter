@@ -27,7 +27,7 @@ Pre-configuration for Let's encrypt SSL/TLS certificate (Grade A on SSL labs)
     ```git clone https://github.com/northernSage/flask-starter.git```
 
 2. Tweak environment variables using the *.env* files inside *envfiles* directories in each service root (*app* and *worker*)
-    
+
     **Important:** Do not forget to create and set a new ```SECRET_KEY``` value and set FLASK_ENV to "production" when deploying!
 
 3. Build and start containers in production or development mode
@@ -50,7 +50,7 @@ Pre-configuration for Let's encrypt SSL/TLS certificate (Grade A on SSL labs)
 
     ```flask create-test-user```
 
-7. Set your application repository as new remote so you can push changes to it 
+7. Set your application repository as new remote so you can push changes to it
 
     ```git remote set-url origin <your-app-repo-url>```
 
@@ -64,7 +64,7 @@ In order to run tests, first open a command shell in the application container
 
    ```docker-compose -f docker-compose.dev/prod.yml exec web bash```
 
-and execute the test suite 
+and execute the test suite
 
    ```pytest```
 

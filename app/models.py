@@ -4,11 +4,12 @@ from time import time
 import jwt
 import redis
 import rq
+from app import db
+from app import login
 from flask import current_app
 from flask_login import UserMixin
-from werkzeug.security import check_password_hash, generate_password_hash
-
-from app import db, login
+from werkzeug.security import check_password_hash
+from werkzeug.security import generate_password_hash
 
 @login.user_loader
 def load_user(id):
@@ -88,4 +89,3 @@ class Task(db.Model):
 
     def __repr__(self):
         return f'<id {self.id}, name: {self.name}, description: {self.description}, user_id: {self.user_id}, complete: {self.complete}>'
-

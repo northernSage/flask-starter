@@ -1,10 +1,10 @@
 import logging
-
-from rq import get_current_job
-
-from app import create_app, db
-from app.models import Task
 from time import sleep
+
+from app import create_app
+from app import db
+from app.models import Task
+from rq import get_current_job
 
 app = create_app()
 app.app_context().push()
@@ -47,4 +47,3 @@ def test_task(delay):
 
 if __name__ == "__main__":
     test_task()
-

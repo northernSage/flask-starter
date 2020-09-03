@@ -1,12 +1,24 @@
-from flask import Blueprint, flash, redirect, render_template, request, url_for
-from flask_login import current_user, login_required, login_user, logout_user
-from werkzeug.urls import url_parse
+from urllib.parse import urljoin
+from urllib.parse import urlparse
 
-from urllib.parse import urlparse, urljoin
 from app import db
 from app.blueprints.email import send_password_reset_email
-from app.forms import LoginForm, RegistrationForm, ResetPasswordRequestForm, ResetPasswordForm
+from app.forms import LoginForm
+from app.forms import RegistrationForm
+from app.forms import ResetPasswordForm
+from app.forms import ResetPasswordRequestForm
 from app.models import User
+from flask import Blueprint
+from flask import flash
+from flask import redirect
+from flask import render_template
+from flask import request
+from flask import url_for
+from flask_login import current_user
+from flask_login import login_required
+from flask_login import login_user
+from flask_login import logout_user
+from werkzeug.urls import url_parse
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -81,4 +93,3 @@ def reset_password(token):
         flash('Your password has been reset.')
         return redirect(url_for('homepage.index'))
     return render_template('email/password_reset_form.html', form=form)
-

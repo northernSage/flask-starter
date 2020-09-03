@@ -1,10 +1,13 @@
-from flask import (
-    Blueprint, render_template)
-
-from werkzeug.exceptions import (
-    BadRequest, NotFound, MethodNotAllowed, RequestTimeout, InternalServerError, BadGateway, ServiceUnavailable)
-
 from app import db
+from flask import Blueprint
+from flask import render_template
+from werkzeug.exceptions import BadGateway
+from werkzeug.exceptions import BadRequest
+from werkzeug.exceptions import InternalServerError
+from werkzeug.exceptions import MethodNotAllowed
+from werkzeug.exceptions import NotFound
+from werkzeug.exceptions import RequestTimeout
+from werkzeug.exceptions import ServiceUnavailable
 
 bp = Blueprint('error', __name__)
 

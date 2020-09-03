@@ -1,17 +1,16 @@
 import logging
-from logging.handlers import RotatingFileHandler, SMTPHandler
+from logging.handlers import RotatingFileHandler
+from logging.handlers import SMTPHandler
 from pathlib import Path
 
+from app.config import Config
 from flask import Flask
 from flask_login import LoginManager
+from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from redis import Redis
 from rq import Queue
-
-from flask_mail import Mail
-
-from app.config import Config
 
 db = SQLAlchemy()
 migrate = Migrate()

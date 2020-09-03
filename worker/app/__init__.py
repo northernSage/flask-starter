@@ -1,8 +1,10 @@
 import os
+
+from app.config import Config
+from app.config import TestConfig
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-from app.config import Config, TestConfig
 
 db = SQLAlchemy()
 login = LoginManager()
@@ -20,4 +22,3 @@ def create_app(test_config=None):
     login.init_app(app)
 
     return app
-

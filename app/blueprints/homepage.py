@@ -1,6 +1,11 @@
-from flask import Blueprint, flash, redirect, render_template, url_for
-from flask_login import current_user, login_required
 from app import db
+from flask import Blueprint
+from flask import flash
+from flask import redirect
+from flask import render_template
+from flask import url_for
+from flask_login import current_user
+from flask_login import login_required
 
 bp = Blueprint('homepage', __name__)
 

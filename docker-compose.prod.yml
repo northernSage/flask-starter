@@ -9,7 +9,7 @@ services:
   worker:
     build:
       context: .
-      dockerfile: ./worker/Dockerfile
+      dockerfile: ./worker/docker/Dockerfile
     depends_on:
       - redis_queue
     command: rq worker --url redis://redis_queue:6379/0 task-queue
@@ -21,7 +21,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: ./app/Dockerfile.prod
+      dockerfile: ./app/docker/Dockerfile.prod
     command: gunicorn --bind 0.0.0.0:5000 wsgi:app
     volumes:
       - static_volume:/home/appuser/app/static

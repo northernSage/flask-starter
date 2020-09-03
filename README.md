@@ -26,7 +26,7 @@ Pre-configuration for Let's encrypt SSL/TLS certificate (Grade A on SSL labs)
 
     ```git clone https://github.com/northernSage/flask-starter.git```
 
-2. Set environment variables using the *.env* files inside *envfiles* directories in each service root (*app* and *worker*)
+2. Tweak environment variables using the *.env* files inside *envfiles* directories in each service root (*app* and *worker*)
     
     **Important:** Do not forget to create and set a new ```SECRET_KEY``` value and set FLASK_ENV to "production" when deploying!
 

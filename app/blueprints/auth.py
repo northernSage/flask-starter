@@ -4,7 +4,7 @@ from werkzeug.urls import url_parse
 
 from urllib.parse import urlparse, urljoin
 from app import db
-from app.email import send_password_reset_email
+from app.blueprints.email import send_password_reset_email
 from app.forms import LoginForm, RegistrationForm, ResetPasswordRequestForm, ResetPasswordForm
 from app.models import User
 

@@ -1,4 +1,3 @@
-from datetime import datetime
 from time import time
 
 import jwt
@@ -61,7 +60,7 @@ class User(UserMixin, db.Model):
             id = jwt.decode(
                 token, current_app.config["SECRET_KEY"], algorithms=["HS256"]
             )["reset_password"]
-        except:
+        except Exception:
             return
         return User.query.get(id)
 

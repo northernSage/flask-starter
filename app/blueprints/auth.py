@@ -8,7 +8,7 @@ from app.forms import RegistrationForm
 from app.forms import ResetPasswordForm
 from app.forms import ResetPasswordRequestForm
 from app.models import User
-from flask import abort 
+from flask import abort
 from flask import Blueprint
 from flask import flash
 from flask import redirect

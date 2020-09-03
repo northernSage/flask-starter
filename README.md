@@ -26,11 +26,15 @@ Pre-configuration for Let's encrypt SSL/TLS certificate (Grade A on SSL labs)
 
     ```git clone https://github.com/northernSage/flask-starter.git```
 
-2. Tweak environment variables using the *.env* files inside *envfiles* directories in each service root (*app* and *worker*)
+2. Install pre-commit hooks
+
+    ```pre-commit install```
+
+3. Tweak environment variables using the *.env* files inside *envfiles* directories in each service root (*app* and *worker*)
 
     **Important:** Do not forget to create and set a new ```SECRET_KEY``` value and set FLASK_ENV to "production" when deploying!
 
-3. Build and start containers in production or development mode
+4. Build and start containers in production or development mode
 
     ```docker-compose -f docker-compose.prod.yml up --build```
 
@@ -40,13 +44,13 @@ Pre-configuration for Let's encrypt SSL/TLS certificate (Grade A on SSL labs)
 
 **Obs.** You can access the application by visiting the URI ```https://<host-machine-ip>``` at first (```https://<host-machine-ip>:5000``` for development mode), and later customize Nginx to your desired url format, hostname, port, etc.
 
-5. Open a command shell in your *web* container and apply migrations
+6. Open a command shell in your *web* container and apply migrations
 
     ```docker-compose -f .\docker-compose.dev/prod.yml exec web bash```
 
     ```flask db upgrade```
 
-6. Create a test user
+7. Create a test user
 
     ```flask create-test-user```
 

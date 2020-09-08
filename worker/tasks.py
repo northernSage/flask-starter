@@ -19,13 +19,13 @@ fh.setFormatter(formatter)
 logger.addHandler(fh)
 
 
-def _set_task_progress(progress, job, job_id):
+def _set_task_progress(progress, job):
     """helper function for task progress update"""
     if job:
         job.meta["progress"] = progress
         job.save_meta()
-        if int(progress) >= 100:
-            task = Task.query.filter_by(id=job_id).first()
+        if progress >= 100:
+            task = Task.query.filter_by(id=job.get_id()).first()
             task.complete = True
             db.session.commit()
 
@@ -33,15 +33,12 @@ def _set_task_progress(progress, job, job_id):
 def test_task(delay):
     """simple task for testing purposes"""
     job = get_current_job()
-    job_id = job.get_id()
     try:
         for i in range(5):
+            _set_task_progress(i * 100 // 4, job)
             sleep(int(delay))
-            _set_task_progress(i * 100 / 5, job, job_id)
     except Exception as e:
         logger.error(str(e))
-    else:
-        _set_task_progress(100.0, job, job_id)
 
 
 if __name__ == "__main__":

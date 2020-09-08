@@ -28,6 +28,7 @@ services:
     #  makes it easier to test during development
     volumes:
       - ./:/home/appuser
+      - ./app/instance:/home/appuser/instance
     ports:
       - 5000:5000
     env_file:

@@ -86,6 +86,8 @@ class Task(db.Model):
         return job.meta.get("progress", 0) if job is not None else 100
 
     def __repr__(self):
-        return f"<id {self.id}, name: {self.name}, "
-        f"description: {self.description}, user_id: {self.user_id}, "
-        f"complete: {self.complete}>"
+        return (
+            f"<id {self.id}, name: {self.name}, "
+            f"description: {self.description}, user_id: {self.user_id}, "
+            f"complete: {self.complete}>"
+        )

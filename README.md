@@ -1,6 +1,6 @@
 # flask Starter App
 
-*A docker-containerized scaffold for web applications using Flask.*
+*A containerized docker scaffold for web applications using Flask.*
 
 ### Docker services
 

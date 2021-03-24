@@ -60,7 +60,7 @@ Pre-configuration for Let's encrypt SSL/TLS certificate (Grade A on SSL labs)
 
     ```git push -u origin master```
 
-You are all set, get codding! :)
+You are all set, get coding! :)
 
 ### Testing
 

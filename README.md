@@ -1,3 +1,7 @@
+.. image:: https://results.pre-commit.ci/badge/github/northernSage/flask-starter/master.svg
+   :target: https://results.pre-commit.ci/latest/github/northernSage/flask-starter/master
+   :alt: pre-commit.ci status
+
 # flask Starter App
 
 *A containerized docker scaffold for web applications using Flask.*

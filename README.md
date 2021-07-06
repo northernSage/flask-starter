@@ -1,6 +1,4 @@
-.. image:: https://results.pre-commit.ci/badge/github/northernSage/flask-starter/master.svg
-   :target: https://results.pre-commit.ci/latest/github/northernSage/flask-starter/master
-   :alt: pre-commit.ci status
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/northernSage/flask-starter/master.svg)](https://results.pre-commit.ci/latest/github/northernSage/flask-starter/master)
 
 # flask Starter App
 

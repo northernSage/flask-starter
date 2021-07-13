@@ -35,7 +35,10 @@ def upgrade():
         sa.Column("description", sa.String(length=128), nullable=True),
         sa.Column("user_id", sa.Integer(), nullable=True),
         sa.Column("complete", sa.Boolean(), nullable=True),
-        sa.ForeignKeyConstraint(["user_id"], ["user.id"],),
+        sa.ForeignKeyConstraint(
+            ["user_id"],
+            ["user.id"],
+        ),
         sa.PrimaryKeyConstraint("id"),
     )
     op.create_index(op.f("ix_task_name"), "task", ["name"], unique=False)

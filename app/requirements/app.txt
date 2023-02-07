@@ -13,7 +13,7 @@ cffi==1.14.2              # via cryptography
 cfgv==3.2.0               # via pre-commit
 click==7.1.2              # via flask, pip-tools, rq
 colorama==0.4.3           # via pytest
-cryptography==2.9.2       # via jwt
+cryptography==39.0.1       # via jwt
 distlib==0.3.1            # via virtualenv
 dnspython==2.0.0          # via email-validator
 email-validator==1.1.1    # via -r .\app\requirements\app.ini
